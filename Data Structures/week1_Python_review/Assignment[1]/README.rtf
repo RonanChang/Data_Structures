@@ -1,0 +1,136 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf100
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red251\green2\blue7;}
+{\*\expandedcolortbl;;\cssrgb\c100000\c14913\c0;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf2 Name\cf0 : Ruonan Chang\
+\
+\cf2 Problem 1:\cf0 \
+\
+\cf2 #ignore all the white space and punctuation\cf0 \
+ignore = ['.', ' ', ',', ';', ':', '?', '!'] \
+\
+def anagram(param1,param2):\
+    \cf2 #check whether all the characters in param1 is in param2\
+    #the number of each charatcer should be the same\cf0 \
+    for character in param1:\
+        if character not in ignore and param1.count(character) != param2.count(character):\
+            return False\
+\
+    \cf2 #check it again for param2\cf0 \
+    for character in param2:\
+        if character not in ignore and param1.count(character) != param2.count(character):\
+             return False\
+\
+    return True\
+\
+\cf2 #test\cf0 \
+state = anagram("sso","so")\
+state2 = anagram("otto","toot")\
+state3 = anagram("ron an","rofred,nan")\
+\
+print('anagram("sso","so") == ' + str(state))\
+print('anagram("otto","toot") == ' + str(state2))\
+print('anagram("ron an","rofred,nan") == ' + str(state3))\
+            \
+        \
+\cf2 Problem 2:\cf0 \
+\
+\
+def palindrome(param):\
+\cf2     #find the middle index\
+    #make sure the left side == right side\
+    #no matter the length is odd or even number,\
+    #we always check from the (middle - 1)\cf0 \
+    index = (len(param) - (len(param) % 2)) // 2\
+    for i in range(index):\
+        \
+        #notice! we wanna check if param[0] == param[-1]\
+        if param[index] != param[-index - 1]:\
+            return False\
+    return True\
+\
+test = palindrome("asdfghgfdsa")\
+print(test)\
+\
+\cf2 Problem 3:\
+\
+#this is created with Euclid's algorithms\cf0 \
+\
+def gcd(a,b):\
+    while b != 0:\
+        t = b\
+        b = a%b\
+        a = t\
+    return a\
+\
+print(gcd(120,18))\
+\
+\
+\cf2 Problem 4:\cf0 \
+\
+\
+def add_one(num_list):\
+\cf2     #convert the string to a list and convert the list into an int\
+    #int + 1\cf0 \
+    new_num = int(''.join(str(x) for x in num_list)) + 1\
+\
+\cf2     #convert the new int back to str\
+    #and then convert the new string to a new list\cf0 \
+    new_list = [int(x) for x in str(new_num)]\
+    return new_list\
+\
+test = add_one([9,9,9])\
+print(test)\
+\
+\
+\
+\cf2 Problem 5:\
+\cf0 \
+import math\
+class Shape:\
+    def __init__(self, name):\
+        self.name = name\
+\
+    def compute_area(self):\
+        pass\
+\
+    def compute_perimeter(self):\
+        pass\
+\
+class Circle(Shape):\
+    def __init__(self, name, radius):\
+        super().__init__(self,name)\
+        self.radius = radius\
+\
+    def compute_area(self):\
+        self.area = math.pi * (self.radius**2)\
+        return self.area\
+\
+    def compute_perimeter(self):\
+        self.perim = 2 * math.pi * self.radius\
+        return self.perim\
+        \
+\
+class Rectangle(Shape):\
+    def __init__(self, name, length, height):\
+        super().__init__(self,name)\
+        self.length = length\
+        self.height = height\
+        \
+\
+    def compute_area(self):\
+        self.area = self.length * self.height\
+        return self.area\
+\
+    def compute_perimeter(self):\
+        self.perim = 2 * (self.length + self.height)\
+        return self.perim\
+\
+c = Circle("Moon", 15)\
+print(c.compute_perimeter())\
+r = Rectangle("Block", 20, 10)\
+print(r.compute_area())\
+}
